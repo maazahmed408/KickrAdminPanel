@@ -1,13 +1,439 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: unset;
+}
+
+:root {
+	--primary: #1a2daa;
+	--secondary: #1c56c1;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+.icon {
+	font-size: 30px;
+	cursor: pointer;
+}
+.icon:hover {
+	opacity: 0.6;
+	transition: all 0.25s ease-in-out;
+}
+
+/* ================ Layout ================ */
+.container {
+	width: 100%;
+	flex: 1;
+	overflow-y: scroll;
+}
+.main {
+	background: #ebebeb;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
+}
+
+/* ====================    LOGIN PAGE    ==================== */
+
+.login-main {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+.hero-image,
+.hero-image img,
+.login-right,
+.logo img {
+	width: 100%;
+}
+
+.hero-image img {
+	height: 100vh;
+}
+
+.login-right .logo {
+	width: 400px;
+}
+.login-right {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 80px;
+}
+.logo {
+	margin-top: 40px;
+}
+.subtitle {
+	color: grey;
+}
+.login-form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	margin-top: 60px;
+	width: 100%;
+}
+.login-group {
+	display: flex;
+	flex: 1;
+	width: 100%;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 40px;
+}
+.login-group input {
+	width: 100%;
+	font-size: 24px;
+	border: 0;
+	outline: 0;
+}
+.input-holder {
+	width: 100%;
+	border: 1px solid #707070;
+	border-radius: 5px;
+	padding: 14px 12px;
+}
+.label-text {
+	font-size: 18px;
+	color: #707070;
+}
+.button-holder {
+	margin-top: 40px;
+}
+.button-holder button {
+	background: var(--primary);
+	border: 0;
+	outline: 0;
+	padding: 20px 120px;
+	border-radius: 5px;
+	color: white;
+	font-size: 20px;
+}
+
+/* ====================== LAYOUT ================ */
+
+.layout {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+/* =============== NAVBAR ============== */
+
+.navbar {
+	display: flex;
+	width: 100%;
+	height: 80px;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--secondary);
+	padding: 14px 24px;
+}
+
+.menu-list {
+	display: flex;
+	list-style: none;
+	align-items: center;
+	gap: 18px;
+	font-size: 16px;
+	color: white;
+}
+.profile-holder {
+	width: 50px;
+	height: 50px;
+}
+
+.profile-holder img {
+	width: 100%;
+}
+
+.searchbar input {
+	outline: 0;
+	border: 0;
+	width: 100%;
+	font-size: 18px;
+}
+
+.searchbar {
+	display: flex;
+	width: 100%;
+	background: white;
+	padding: 12px 10px;
+	border-radius: 5px;
+	width: 300px;
+	align-items: center;
+	gap: 10px;
+	font-size: 18px;
+}
+
+/* =============== SIDEBAR ================= */
+
+.sidebar {
+	width: 300px;
+	min-height: 100vh;
+	background: var(--primary);
+	position: relative;
+}
+.sidebar-header {
+	width: 200px;
+}
+.sidebar-header img {
+	width: 100%;
+}
+
+.sidebar-list {
+	margin-top: 40px;
+	font-size: 20px;
+	color: whitesmoke;
+}
+.sidebar-item {
+	padding: 12px 14px;
+	width: 100%;
+	background: var(--primary);
+}
+
+.sidebar-item:hover {
+	background: var(--secondary);
+	cursor: pointer;
+	transition: all 0.25s ease-in-out;
+}
+
+.sidebar-group {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	gap: 12px;
+}
+.chevron {
+	display: flex;
+	align-items: flex-end;
+}
+.sidebar-main-group {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+.sidebar-submenu {
+	margin-left: 30px;
+	font-size: 16px;
+	margin-top: 18px;
+	transition: all 0.5s ease-in-out;
+}
+.sidebar-submenu-item {
+	margin-top: 10px;
+}
+.sidebar-submenu-item:hover {
+	font-weight: bold;
+}
+
+/* ============== Header ============================== */
+
+.header-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+}
+.header-title:hover {
+	transform: translate(-10px);
+	transition: all 0.25s ease-in-out;
+}
+
+/* =========== table of contents =========== */
+.block-container {
+	margin-top: 60px;
+	width: 100%;
+	min-width: 400px;
+	background: white;
+	padding: 28px 18px;
+	border-radius: 10px;
+	min-height: 65vh;
+}
+.block-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 40px;
+	color: var(--secondary);
+}
+
+.main-table {
+	width: 100%;
+	border-collapse: collapse;
+	border-radius: 10px 10px;
+	overflow: hidden;
+}
+.main-table td {
+	text-align: center;
+	min-width: 140px;
+}
+
+.main-table thead tr {
+	background-color: var(--secondary);
+	color: whitesmoke;
+}
+.main-table thead th,
+.main-table thead td {
+	padding: 10px 14px;
+}
+
+.main-table td {
+	padding: 14px 0;
+}
+
+.page-container {
+	position: relative;
+}
+
+/* ===============CUSTOM FORM =============================== */
+
+.custom-form {
+	width: 45%;
+}
+
+/* ============ Custom Input =============== */
+
+.custom-input {
+	background: transparent;
+	width: 100%;
+	margin-bottom: 40px;
+}
+.custom-input input,
+.file-input-group,
+.custom-input select,
+.custom-input textarea {
+	width: 100%;
+	font-size: 20x;
+	border: 0;
+	outline: 0;
+	padding: 14px 12px;
+	overflow: hidden;
+}
+
+.input-text-holder {
+	position: relative;
+	margin-top: 20px;
+	width: 100%;
+	border: 1px solid gray;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.input-text {
+	font-size: 20px;
+	font-weight: 500;
+	color: #707070;
+}
+
+/* -===================CUSTOM FILE INPUT ============= */
+
+.file-input-group {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	cursor: pointer;
+}
+.file-input-group p {
+	flex-grow: 1;
+}
+
+/* ================ Custom Button ============================= */
+
+.cButton {
+	outline: 0;
+	border: 0;
+	font-size: 18px;
+	padding: 10px 18px;
+	color: white;
+	background: var(--secondary);
+	border-radius: 5px;
+	cursor: pointer;
+}
+.secondary {
+	background: white;
+	border: 1px solid #1a2daa;
+	color: var(--secondary);
+}
+
+/* =========== Add Category ============== */
+
+.button-group {
+	display: flex;
+	gap: 10px;
+	margin-top: 80px;
+}
+
+/* ===================Radio Button =================*/
+
+.radio-btn-outer {
+	width: 20px;
+	height: 20px;
+	padding: 2px;
+	border: 2px solid var(--primary);
+	border-radius: 50%;
+}
+
+.radio-btn-filled {
+	width: 100%;
+	height: 100%;
+	background: var(--secondary);
+	border-radius: 50%;
+	transition: all 0.25s ease-in-out;
+}
+
+.radio-btn-group {
+	display: flex;
+	gap: 10px;
+	cursor: pointer;
+}
+
+/* ================== Modal Container ================= */
+
+.modal-container {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	padding: 20px 30px;
+	border-radius: 10px;
+	width: 300px;
+	background: white;
+	transform: translate(-50%, -50%);
+}
+.backdrop {
+	opacity: 0.7;
+}
+
+.modal-content {
+	width: 100%;
+}
+
+.button-group-modal {
+	display: flex;
+	width: 100%;
+	flex: 1;
+	justify-content: center;
+	gap: 18px;
+}
+
+/* ========= Miscellaneous =============== */
+
+.overflow-scroll-container {
+	width: 100%;
+	overflow: auto;
 }
