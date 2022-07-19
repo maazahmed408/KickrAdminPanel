@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import Header from "../../Component/Header";
 import BlockContainer from "../../Component/BlockContainer";
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiFillEdit } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getProductListRequest } from "../../store/actions";
+import { MdDelete } from "react-icons/md";
 
 const ListProduct = () => {
 	const dispatch = useDispatch();
 	const { authToken } = useSelector((state) => state.auth);
 	const { productList } = useSelector((state) => state.product);
+	const navigate = useNavigate();
 
 	const tableData = [
 		{
@@ -44,10 +47,22 @@ const ListProduct = () => {
 			title: "Product In Stock",
 		},
 		{
-			key: "action",
-			title: "Action",
+			key: "view",
+			title: "View",
+		},
+		{
+			key: "edit",
+			title: "Edit",
+		},
+		{
+			key: "delete",
+			title: "Delete",
 		},
 	];
+
+	const handleEdit = (id) => {
+		navigate("/updateProduct/" + id);
+	};
 
 	useEffect(() => {
 		dispatch(getProductListRequest(authToken));
@@ -83,7 +98,7 @@ const ListProduct = () => {
 											<img
 												src={product.productMainImgUrl}
 												style={{ width: "100%", height: "100%" }}
-												alt="product Image "
+												alt=""
 											/>
 										</div>
 									</td>
@@ -94,7 +109,16 @@ const ListProduct = () => {
 									<td>{product.productSubCategory.subCategoryName}</td>
 									<td>{product.productStock ? "In Stock" : "Out Of Stock"}</td>
 									<td>
-										<AiFillEye />
+										<AiFillEye className="icon" />
+									</td>
+									<td>
+										<AiFillEdit
+											className="icon"
+											onClick={() => handleEdit(product._id)}
+										/>
+									</td>
+									<td>
+										<MdDelete className="icon" color="red" />
 									</td>
 								</tr>
 							))}

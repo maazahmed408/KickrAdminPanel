@@ -9,14 +9,14 @@ import { BiCategoryAlt } from "react-icons/bi";
 import * as Pages from "../Pages";
 
 export const sidebarData = [
-	{
-		key: "dashboard",
-		name: "Dashboard",
-		icon: <MdOutlineSpaceDashboard />,
-		path: "/dashboard",
-		component: <Pages.Dashboard />,
-		subMenu: false,
-	},
+	// {
+	// 	key: "dashboard",
+	// 	name: "Dashboard",
+	// 	icon: <MdOutlineSpaceDashboard />,
+	// 	path: "/dashboard",
+	// 	component: <Pages.Dashboard />,
+	// 	subMenu: false,
+	// },
 	{
 		key: "userList",
 		name: "User's List",

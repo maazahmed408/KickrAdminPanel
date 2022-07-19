@@ -5,7 +5,11 @@ import {
 	ADD_SUB_CATEGORY,
 	GET_ONE_CATEGORY,
 	UPDATE_CATEGORY,
+	DELETE_CATEGORY,
+	DELETE_SUB_CATEGORY,
 	UPDATE_SUB_CATEGORY,
+	UPDATE_CAT_ICON,
+	UPDATE_SUB_CAT_ICON,
 } from "../types";
 
 export const getCategoryListRequest = (payload) => ({
@@ -105,5 +109,61 @@ export const updateSubCategorySuccess = (payload) => ({
 
 export const updateSubCategoryFailure = (payload) => ({
 	type: UPDATE_SUB_CATEGORY.FAILURE,
+	payload,
+});
+export const deleteCategoryRequest = (payload) => ({
+	type: DELETE_CATEGORY.REQUEST,
+	payload,
+});
+
+export const deleteCategorySuccess = (payload) => ({
+	type: DELETE_CATEGORY.SUCCESS,
+	payload,
+});
+
+export const deleteCategoryFailure = (payload) => ({
+	type: DELETE_CATEGORY.FAILURE,
+	payload,
+});
+export const deleteSubCategoryRequest = (payload) => ({
+	type: DELETE_SUB_CATEGORY.REQUEST,
+	payload,
+});
+
+export const deleteSubCategorySuccess = (payload) => ({
+	type: DELETE_SUB_CATEGORY.SUCCESS,
+	payload,
+});
+
+export const deleteSubCategoryFailure = (payload) => ({
+	type: DELETE_SUB_CATEGORY.FAILURE,
+	payload,
+});
+export const updateCatIconRequest = (payload) => ({
+	type: UPDATE_CAT_ICON.REQUEST,
+	payload,
+});
+
+export const updateCatIconSuccess = (payload) => ({
+	type: UPDATE_CAT_ICON.SUCCESS,
+	payload,
+});
+
+export const updateCatIconFailure = (payload) => ({
+	type: UPDATE_CAT_ICON.FAILURE,
+	payload,
+});
+export const updateSubCatIconRequest = (payload) => ({
+	type: UPDATE_SUB_CAT_ICON.REQUEST,
+	payload,
+});
+
+export const updateSubCatIconSuccess = (payload) => ({
+	type: UPDATE_SUB_CAT_ICON.SUCCESS,
+	payload,
+});
+
+export const updateSubCatIconFailure = (payload) => ({
+	type: UPDATE_SUB_CAT_ICON.FAILURE,
 	payload,
 });

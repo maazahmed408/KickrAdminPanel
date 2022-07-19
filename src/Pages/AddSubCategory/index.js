@@ -14,7 +14,6 @@ import Button from "../../Component/Button";
 
 const AddSubCategory = () => {
 	const dispatch = useDispatch();
-
 	const [subCategory, setSubCategory] = useState("");
 	const [selectedCategory, setSelectedCategory] = useState("");
 	const [file, setFile] = useState(null);

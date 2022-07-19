@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { AiFillEye, AiFillEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import Modal from "../../Component/Modal";
+import IconViewModal from "../../Component/IconViewModal";
+
 import {
 	getSubCategoryListRequest,
 	updateSubCategoryRequest,
+	updateSubCatIconRequest,
 } from "../../store/actions";
 
 const ListSubCategory = () => {
@@ -15,6 +18,9 @@ const ListSubCategory = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [newSubCatName, setNewSubCatName] = useState("");
 	const [subCatId, setSubCatId] = useState("");
+	const [newImage, setNewImage] = useState();
+	const [iconFile, setIconFile] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [catId, setCatId] = useState("");
 	const { authToken } = useSelector((state) => state.auth);
 	const { subCategoryList } = useSelector((state) => state.category);
@@ -24,10 +30,10 @@ const ListSubCategory = () => {
 			key: "sno",
 			title: "S.No",
 		},
-		{
-			key: "categoryName",
-			title: "Category Name",
-		},
+		// {
+		// 	key: "categoryName",
+		// 	title: "Category Name",
+		// },
 
 		{
 			key: "subCategoryName",
@@ -51,6 +57,27 @@ const ListSubCategory = () => {
 		},
 	];
 
+	const updateImageIcon = () => {
+		let data = new FormData();
+
+		data.append("id", catId);
+		data.append("image", newImage);
+		data.append("iconUrl", iconFile);
+
+		dispatch(
+			updateSubCatIconRequest({
+				token: authToken,
+				value: data,
+			})
+		);
+	};
+
+	useEffect(() => {
+		if (newImage) {
+			updateImageIcon();
+		}
+	}, [newImage]);
+
 	const handleRequest = () => {
 		if (newSubCatName) {
 			// FIXME: Display Success Message
@@ -66,6 +93,14 @@ const ListSubCategory = () => {
 		setIsVisible(false);
 	};
 
+	const handleView = (id, image) => {
+		setIconFile(image);
+		setIsOpen(true);
+		setCatId(id);
+
+		// setCatId(id);
+	};
+
 	const handleEdit = (subId, catId) => {
 		setIsVisible(true);
 		setSubCatId(subId);
@@ -78,14 +113,14 @@ const ListSubCategory = () => {
 
 	return (
 		<div className="page-container">
-			<div className={isVisible ? "backdrop" : "null"}>
+			<div className={isVisible || isOpen ? "backdrop" : "null"}>
 				<Header title="Sub Category List" />
 				<BlockContainer title="Sub Category List">
 					<table className="main-table">
 						<thead>
 							<tr>
 								{tableData.map((item, index) => (
-									<th>{item.title}</th>
+									<th key={index}>{item.title}</th>
 								))}
 							</tr>
 						</thead>
@@ -94,11 +129,14 @@ const ListSubCategory = () => {
 								subCategoryList.map((item, index) => (
 									<tr key={item._id}>
 										<td>{++index}</td>
-										<td>{item.category.categoryName}</td>
+										{/* <td>{item.category.categoryName}</td> */}
 										<td>{item.subCategoryName}</td>
 										<td>{item.createdAt}</td>
 										<td>
-											<AiFillEye className="icon" />
+											<AiFillEye
+												className="icon"
+												onClick={() => handleView(item._id, item.iconUrl)}
+											/>
 										</td>
 										<td>
 											<AiFillEdit
@@ -121,6 +159,17 @@ const ListSubCategory = () => {
 					setIsVisible={setIsVisible}
 					input={newSubCatName}
 					setInput={setNewSubCatName}
+					handleRequest={handleRequest}
+				/>
+			)}
+			{isOpen && (
+				<IconViewModal
+					isOpen={isOpen}
+					setIsOpen={setIsOpen}
+					iconFile={iconFile}
+					setIconFile={setIconFile}
+					newImage={newImage}
+					setNewImage={setNewImage}
 					handleRequest={handleRequest}
 				/>
 			)}

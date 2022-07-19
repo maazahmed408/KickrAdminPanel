@@ -54,6 +54,69 @@ export const CustomFileInput = ({ title = "Upload Icon", file, setFile }) => {
 		</div>
 	);
 };
+export const CustomFileLgInput = ({
+	title = "Upload Icon",
+	file,
+	setFile,
+	displayImgUrl,
+	setDisplayImgUrl,
+}) => {
+	const imageInput = useRef(null);
+
+	const handleImage = () => {
+		imageInput.current.click();
+	};
+
+	const handleChange = (e) => {
+		const fileObj = e.target.files && e.target.files[0];
+		setDisplayImgUrl(URL.createObjectURL(fileObj));
+		if (!fileObj) {
+			return;
+		} else {
+			setFile(fileObj);
+		}
+	};
+
+	return (
+		<div className="custom-input lg-file-input">
+			<label className="input-text">{title}</label>
+			{displayImgUrl && (
+				<>
+					<div className="input-text-holder">
+						<img
+							src={displayImgUrl}
+							style={{ width: "100%", height: "100%" }}
+							alt=""
+						/>
+					</div>
+					<button className="btn-upload-img" onClick={handleImage}>
+						click to upload new Image
+					</button>
+				</>
+			)}
+
+			<div
+				className="input-text-holder"
+				style={{ display: displayImgUrl ? "none" : "" }}
+			>
+				<input
+					type="file"
+					style={{ display: "none" }}
+					ref={imageInput}
+					onChange={handleChange}
+				/>
+				<div className="file-input-group" onClick={handleImage}>
+					<p>{file ? file.name : "Click to Upload Image..."}</p>
+					{file ? (
+						<BsFillCheckCircleFill size={30} color="green" />
+					) : (
+						<BsCloudUploadFill size={30} color="#1c56c1" />
+					)}
+				</div>
+			</div>
+		</div>
+	);
+};
 
 export const CustomSelect = ({
 	title,

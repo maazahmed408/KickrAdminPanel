@@ -5,6 +5,8 @@ import CustomInput, { CustomFileInput } from "../../Component/CustomInput";
 import Button from "../../Component/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategoryRequest } from "../../store/actions";
+import { animation } from "../../utils/animations";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const AddCategory = () => {
 	const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const AddCategory = () => {
 	};
 
 	return (
-		<div className="page-container">
+		<motion.div className="page-container">
 			<Header title="Add Category" />
 			<BlockContainer title="Add Category">
 				<div className="custom-form">
@@ -45,7 +47,7 @@ const AddCategory = () => {
 					</div>
 				</div>
 			</BlockContainer>
-		</div>
+		</motion.div>
 	);
 };
 

@@ -8,6 +8,7 @@ import Cart from "./Cart";
 import Dashboard from "./Dashboard";
 import UserList from "./UserList";
 import Login from "./Login";
+import UpdateProduct from "./UpdateProduct";
 
 export {
 	AddCategory,
@@ -20,4 +21,5 @@ export {
 	Dashboard,
 	Login,
 	UserList,
+	UpdateProduct,
 };

@@ -12,7 +12,7 @@ const Login = () => {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			navigate("/dashboard");
+			navigate("/userList");
 		}
 	}, [isLoggedIn]);
 

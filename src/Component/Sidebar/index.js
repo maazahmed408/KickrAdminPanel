@@ -4,6 +4,8 @@ import { sidebarData } from "../../utils/SidebarData";
 import { AiOutlineRight, AiOutlineDown } from "react-icons/ai";
 import CustomLink from "../CustomLink";
 import { Link } from "react-router-dom";
+import { animatinSidebar } from "../../utils/animations";
+import { motion } from "framer-motion/dist/framer-motion";
 
 const Sidebar = () => {
 	const [isVisible, setIsVisible] = useState("");
@@ -24,9 +26,23 @@ const Sidebar = () => {
 			<div className="sidebar-list">
 				<ul className="sidebar-menu">
 					{sidebarData.map((data, index) => (
-						<li className="sidebar-item" key={index}>
+						<motion.li
+							className="sidebar-item"
+							key={index}
+							variants={animatinSidebar}
+							initial="initial"
+							animate="animate"
+							exit="exit"
+							transition={{ duration: 0.25, type: "spring" }}
+						>
 							<CustomLink to={data.path} value={data}>
-								<div
+								<motion.div
+									// className="sidebar-submenu"
+									variants={animatinSidebar}
+									initial="initial"
+									animate="animate"
+									exit="exit"
+									transition={{ duration: 0.25, type: "spring" }}
 									className="sidebar-main-group"
 									onClick={() => handleDropDown(data.key)}
 								>
@@ -40,13 +56,13 @@ const Sidebar = () => {
 										) : (
 											<AiOutlineDown className="chevron" />
 										))}
-								</div>
+								</motion.div>
 							</CustomLink>
 
 							{isVisible === data.key && data.subMenu && (
 								<SubMenu submenu={data.subMenuData} />
 							)}
-						</li>
+						</motion.li>
 					))}
 				</ul>
 			</div>
@@ -56,7 +72,14 @@ const Sidebar = () => {
 
 const SubMenu = ({ submenu, isVisible }) => {
 	return (
-		<div className="sidebar-submenu">
+		<motion.div
+			className="sidebar-submenu"
+			variants={animatinSidebar}
+			initial="initial"
+			animate="animate"
+			exit="exit"
+			transition={{ duration: 0.25, type: "tween" }}
+		>
 			<ul className="sidebar-submenu-list">
 				{submenu.map((submenu, index) => (
 					<li key={index} className="sidebar-submenu-item">
@@ -64,7 +87,7 @@ const SubMenu = ({ submenu, isVisible }) => {
 					</li>
 				))}
 			</ul>
-		</div>
+		</motion.div>
 	);
 };
 

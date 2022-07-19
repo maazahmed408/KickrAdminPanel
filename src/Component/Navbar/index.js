@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import { FiSearch, FiMail } from "react-icons/fi";
 import { HiBell } from "react-icons/hi";
 import { Profile } from "../../Assets";
+import { logoutRequest } from "../../store/actions";
+import { useDispatch } from "react-redux";
+import Button from "../Button";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
 	let date = new Date();
 	const [time, setTime] = useState(date.toLocaleString());
+
+	const handleLogout = () => {
+		dispatch(logoutRequest());
+	};
 
 	setInterval(() => {
 		date = new Date();
@@ -23,11 +31,14 @@ const Navbar = () => {
 					<li className="menu-item" style={{ fontWeight: 500 }}>
 						{time}
 					</li>
-					<li className="menu-item">
+					{/* <li className="menu-item">
 						<HiBell size={25} />
 					</li>
 					<li className="menu-item">
 						<FiMail size={25} />
+					</li> */}
+					<li className="menu-item" onClick={handleLogout}>
+						<Button name="Logout" type="logout-btn" />
 					</li>
 					<li className="menu-item">
 						<div className="profile-holder">

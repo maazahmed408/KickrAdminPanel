@@ -163,3 +163,98 @@ export const updateSubCategoryService = async (data) => {
 		};
 	}
 };
+export const deleteCategoryService = async (payload) => {
+	let data = payload.value;
+	try {
+		let URL = apiURL + "admin/deleteCategory";
+		let config = {
+			headers: {
+				Authorization: "Bearer " + payload.token,
+			},
+			data,
+		};
+		let res = await axios.delete(URL, config);
+		console.log(res.data);
+		return {
+			success: true,
+			data: res.data,
+		};
+	} catch (e) {
+		console.log("Error message", e);
+		return {
+			success: false,
+			data: {},
+			message: e,
+		};
+	}
+};
+export const deleteSubCategoryService = async (data) => {
+	try {
+		let URL = apiURL + "admin/deleteSubCategory";
+		let config = {
+			headers: {
+				Authorization: "Bearer " + data.token,
+			},
+		};
+		let res = await axios.delete(URL, data.value, config);
+		console.log(res.data);
+		return {
+			success: true,
+			data: res.data,
+		};
+	} catch (e) {
+		console.log("Error message", e);
+		return {
+			success: false,
+			data: {},
+			message: e,
+		};
+	}
+};
+
+export const updateCatIconService = async (data) => {
+	try {
+		let URL = apiURL + "admin/updateCategoryIcon";
+		let config = {
+			headers: {
+				Authorization: "Bearer " + data.token,
+			},
+		};
+		let res = await axios.put(URL, data.value, config);
+
+		return {
+			success: true,
+			data: res.data,
+		};
+	} catch (e) {
+		console.log("Error message", e);
+		return {
+			success: false,
+			data: {},
+			message: e,
+		};
+	}
+};
+export const updateSubCatIconService = async (data) => {
+	try {
+		let URL = apiURL + "admin/updateSubCategoryIcon";
+		let config = {
+			headers: {
+				Authorization: "Bearer " + data.token,
+			},
+		};
+		let res = await axios.put(URL, data.value, config);
+
+		return {
+			success: true,
+			data: res.data,
+		};
+	} catch (e) {
+		console.log("Error message", e);
+		return {
+			success: false,
+			data: {},
+			message: e,
+		};
+	}
+};

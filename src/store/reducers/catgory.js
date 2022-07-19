@@ -6,6 +6,10 @@ import {
 	GET_ONE_CATEGORY,
 	UPDATE_CATEGORY,
 	UPDATE_SUB_CATEGORY,
+	DELETE_SUB_CATEGORY,
+	DELETE_CATEGORY,
+	UPDATE_CAT_ICON,
+	UPDATE_SUB_CAT_ICON,
 } from "../types";
 
 const categoryInitialState = {
@@ -139,6 +143,74 @@ const categoryReducer = (state = categoryInitialState, action) => {
 				error: {},
 			};
 		case UPDATE_SUB_CATEGORY.FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: action.payload.message,
+			};
+		case DELETE_SUB_CATEGORY.REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case DELETE_SUB_CATEGORY.SUCCESS:
+			return {
+				...state,
+				loading: false,
+				error: {},
+			};
+		case DELETE_SUB_CATEGORY.FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: action.payload.message,
+			};
+		case DELETE_CATEGORY.REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case DELETE_CATEGORY.SUCCESS:
+			return {
+				...state,
+				loading: false,
+				error: {},
+			};
+		case DELETE_CATEGORY.FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: action.payload.message,
+			};
+		case UPDATE_CAT_ICON.REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case UPDATE_CAT_ICON.SUCCESS:
+			return {
+				...state,
+				loading: false,
+				error: {},
+			};
+		case UPDATE_CAT_ICON.FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: action.payload.message,
+			};
+		case UPDATE_SUB_CAT_ICON.REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case UPDATE_SUB_CAT_ICON.SUCCESS:
+			return {
+				...state,
+				loading: false,
+				error: {},
+			};
+		case UPDATE_SUB_CAT_ICON.FAILURE:
 			return {
 				...state,
 				loading: false,
